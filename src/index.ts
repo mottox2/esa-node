@@ -1,10 +1,28 @@
 import axios, { AxiosInstance } from 'axios'
 
+type Client = AxiosInstance
+
+interface CollectionResponse {
+  prev_page: number | null
+  next_page: number | null
+  total_count: number
+  page: number
+  per_page: number
+  max_per_page: number
+}
+
 interface Post {
   name: string
 }
 
-type Client = AxiosInstance
+interface PostCollection extends CollectionResponse {
+  posts: Array<Post>
+}
+
+interface CollectionOptions {
+  page?: number
+  per_page?: number
+}
 
 class Teams {
   client: Client
@@ -13,17 +31,18 @@ class Teams {
     this.client = client
   }
 
-  async post(postId: string) {
+  post(postId: string) {
     return this.client.request<Post>({
       method: 'get',
       url: `/posts/${postId}`
     }).then(res => res.data)
   }
 
-  async posts() {
-    return this.client.request<Array<Post>>({
+  posts(options?: CollectionOptions) {
+    return this.client.request<PostCollection>({
       method: 'get',
-      url: '/posts'
+      url: '/posts',
+      params: options,
     }).then(res => res.data)
   }
 }
