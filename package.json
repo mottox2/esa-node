@@ -2,6 +2,7 @@
   "name": "esa-node",
   "version": "0.1.0",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "author": "mottox2 <y.mottox2@gmail.com>",
   "license": "MIT",
   "devDependencies": {
@@ -10,6 +11,7 @@
     "@babel/node": "^7.0.0-beta.54",
     "@babel/preset-env": "^7.0.0-beta.54",
     "@babel/preset-typescript": "^7.0.0-beta.54",
+    "@types/node": "^10.5.3",
     "typescript": "^2.9.2"
   },
   "dependencies": {
@@ -17,7 +19,7 @@
   },
   "scripts": {
     "test": "babel-node src/index.test.ts --extensions .ts",
-    "build": "./node_modules/.bin/babel src/index.ts --out-dir dist/ --extensions .ts",
+    "build": "tsc --emitDeclarationOnly && babel src/index.ts --out-dir dist/ --extensions .ts",
     "prepublish": "npm run build"
   }
 }
