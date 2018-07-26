@@ -23,6 +23,7 @@ interface Post {
   created_at: string
   updated_at: string
   message: string
+  url: string
   revision_number: number
   created_by: {
     name: string
