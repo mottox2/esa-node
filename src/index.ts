@@ -49,45 +49,35 @@ interface CollectionOptions {
   per_page?: number
 }
 
-class Teams {
-  client: Client
+class Esa {
+  private client: Client
+  private teamName: string
 
-  constructor(client: Client) {
-    this.client = client
+  constructor(accessToken: string, teamName?: string) {
+    this.teamName = teamName
+    this.client = axios.create({
+      baseURL: 'https://api.esa.io/v1'
+    })
+
+    this.client.interceptors.request.use((config) => {
+      config.headers.Authorization = `Bearer ${accessToken}`
+      return config
+    })
   }
 
   post(postId: string) {
     return this.client.request<Post>({
       method: 'get',
-      url: `/posts/${postId}`
+      url: `/teams/${this.teamName}/posts/${postId}`
     }).then(res => res.data)
   }
 
   posts(options?: CollectionOptions) {
     return this.client.request<PostCollection>({
       method: 'get',
-      url: '/posts',
+      url: `/teams/${this.teamName}/posts`,
       params: options,
     }).then(res => res.data)
-  }
-}
-
-class Esa {
-  private client: Client;
-  teams: Teams
-
-  constructor(accessToken: string, teamName: string) {
-    const baseUrl = `https://api.esa.io/v1/teams/${teamName}`
-    this.client = axios.create({
-      baseURL: baseUrl
-    })
-    
-    this.client.interceptors.request.use((config) => {
-      config.headers.Authorization = `Bearer ${accessToken}`
-      return config
-    })
-
-    this.teams = new Teams(this.client)
   }
 }
 
