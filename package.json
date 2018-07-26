@@ -1,8 +1,8 @@
 {
   "name": "esa-node",
   "version": "0.1.2",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "author": "mottox2 <y.mottox2@gmail.com>",
   "license": "MIT",
   "devDependencies": {
@@ -19,7 +19,7 @@
   },
   "scripts": {
     "test": "babel-node src/index.test.ts --extensions .ts",
-    "build": "tsc --emitDeclarationOnly && babel src/index.ts --out-dir dist/ --extensions .ts",
+    "build": "tsc --emitDeclarationOnly && babel src/index.ts --out-dir lib/ --extensions .ts",
     "prepublish": "npm run build"
   }
 }
