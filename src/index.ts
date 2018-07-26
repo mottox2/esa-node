@@ -85,7 +85,7 @@ interface CollectionOptions {
 
 class Esa {
   private client: Client
-  private teamName: string
+  private teamName?: string
 
   constructor(accessToken: string, teamName?: string) {
     this.teamName = teamName
