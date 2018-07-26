@@ -1,7 +1,7 @@
 {
   "name": "esa-node",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "0.1.0",
+  "main": "dist/index.js",
   "author": "mottox2 <y.mottox2@gmail.com>",
   "license": "MIT",
   "devDependencies": {
@@ -16,6 +16,8 @@
     "axios": "^0.18.0"
   },
   "scripts": {
-    "test": "babel-node src/index.test.ts --extensions .ts"
+    "test": "babel-node src/index.test.ts --extensions .ts",
+    "build": "./node_modules/.bin/babel src/index.ts --out-dir dist/ --extensions .ts",
+    "prepublish": "npm run build"
   }
 }
