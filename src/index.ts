@@ -44,6 +44,40 @@ interface PostCollection extends CollectionResponse {
   posts: Array<Post>
 }
 
+interface Team {
+  name: string
+  privacy: 'closed' | 'open'
+  description: string
+  icon: string
+  url: string
+}
+
+interface TeamsCollection extends CollectionResponse {
+  teams: Array<Team>
+}
+
+interface Member {
+  name: string
+  screen_name: string
+  icon: string
+  email: string
+  posts_count: number
+}
+
+interface MembersCollection extends CollectionResponse {
+  members: Array<Member>
+}
+
+interface User {
+  id: number
+  name: string
+  screen_name: string
+  created_at: string
+  updated_at: string
+  icon: string
+  email: string
+}
+
 interface CollectionOptions {
   page?: number
   per_page?: number
@@ -65,6 +99,32 @@ class Esa {
     })
   }
 
+  setTeam(teamName: string) {
+    this.teamName = teamName
+  }
+
+  teams(options?: CollectionOptions) {
+    return this.client.request<TeamsCollection>({
+      method: 'get',
+      url: `/teams`,
+      params: options,
+    }).then(res => res.data)
+  }
+
+  team(teamName: string) {
+    return this.client.request<Team>({
+      method: 'get',
+      url: `/teams/${teamName}`,
+    }).then(res => res.data)
+  }
+
+  members() {
+    return this.client.request<MembersCollection>({
+      method: 'get',
+      url: `/teams/${this.teamName}/members`
+    }).then(res => res.data)
+  }
+
   post(postId: string) {
     return this.client.request<Post>({
       method: 'get',
@@ -77,6 +137,13 @@ class Esa {
       method: 'get',
       url: `/teams/${this.teamName}/posts`,
       params: options,
+    }).then(res => res.data)
+  }
+
+  user() {
+    return this.client.request<User>({
+      method: 'get',
+      url: `/user`,
     }).then(res => res.data)
   }
 }
