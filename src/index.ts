@@ -12,7 +12,32 @@ interface CollectionResponse {
 }
 
 interface Post {
+  number: number
   name: string
+  tags: Array<string>
+  category: string
+  full_name: string
+  wip: boolean
+  body_md: string
+  body_html: string
+  created_at: string
+  updated_at: string
+  message: string
+  revision_number: number
+  created_by: {
+    name: string
+    screen_name: string
+    icon: string
+  }
+  updated_by: {}
+  kind: 'stock' | 'flow'
+  comments_count: number
+  tasks_count: number
+  done_tasks_count: number
+  stargazers_count: number
+  watchers_count: number
+  star: boolean
+  watch: boolean
 }
 
 interface PostCollection extends CollectionResponse {
