@@ -16,14 +16,21 @@ class Teams {
   async post(postId: string) {
     return this.client.request<Post>({
       method: 'get',
-      url: '/'
-    })
+      url: `/posts/${postId}`
+    }).then(res => res.data)
+  }
+
+  async posts() {
+    return this.client.request<Array<Post>>({
+      method: 'get',
+      url: '/posts'
+    }).then(res => res.data)
   }
 }
 
 class Esa {
   private client: Client;
-  private teams: Teams
+  teams: Teams
 
   constructor(accessToken: string, teamName: string) {
     const baseUrl = `https://api.esa.io/v1/teams/${teamName}`
@@ -32,7 +39,7 @@ class Esa {
     })
     
     this.client.interceptors.request.use((config) => {
-      config.headers.Authorizaion = `Bearer ${accessToken}`
+      config.headers.Authorization = `Bearer ${accessToken}`
       return config
     })
 
