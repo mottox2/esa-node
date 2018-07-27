@@ -16,6 +16,18 @@ via yarn
 $ yarn add esa-node
 ```
 
+## Supported methods
+### GET
+- teams
+- team
+- members
+- posts
+- posts(post_number)
+- comments
+- comment
+- invitation
+- user
+
 ## Example
 
 ```js
