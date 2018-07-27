@@ -11,6 +11,12 @@ interface CollectionResponse {
   max_per_page: number
 }
 
+interface RelatedUser {
+  name: string
+  screen_name: string
+  icon: string
+}
+
 interface Post {
   number: number
   name: string
@@ -25,12 +31,8 @@ interface Post {
   message: string
   url: string
   revision_number: number
-  created_by: {
-    name: string
-    screen_name: string
-    icon: string
-  }
-  updated_by: {}
+  created_by: RelatedUser
+  updated_by: RelatedUser
   kind: 'stock' | 'flow'
   comments_count: number
   tasks_count: number
@@ -52,7 +54,7 @@ interface Comment {
   created_at: string
   updated_at: string
   url: string
-  created_by: {}
+  created_by: RelatedUser
   stargazers_count: number
   star: boolean
 }
