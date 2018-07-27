@@ -45,6 +45,22 @@ interface PostCollection extends CollectionResponse {
   posts: Array<Post>
 }
 
+interface Comment {
+  id: number
+  body_md: string
+  body_html: string
+  created_at: string
+  updated_at: string
+  url: string
+  created_by: {}
+  stargazers_count: number
+  star: boolean
+}
+
+interface CommentCollection extends CollectionResponse {
+  comments: Array<Comment>
+}
+
 interface Team {
   name: string
   privacy: 'closed' | 'open'
@@ -138,6 +154,20 @@ class Esa {
       method: 'get',
       url: `/teams/${this.teamName}/posts`,
       params: options,
+    }).then(res => res.data)
+  }
+
+  comments(postId: number) {
+    return this.client.request<CommentCollection>({
+      method: 'get',
+      url: `/teams/${this.teamName}/posts/${postId}/comments`
+    }).then(res => res.data)
+  }
+
+  comment(commentId: number) {
+    return this.client.request<Comment>({
+      method: 'get',
+      url: `/teams/${this.teamName}/comments/${commentId}`
     }).then(res => res.data)
   }
 
