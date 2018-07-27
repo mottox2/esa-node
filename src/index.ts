@@ -171,6 +171,15 @@ class Esa {
     }).then(res => res.data)
   }
 
+  invitation() {
+    return this.client.request<{
+      url: string
+    }>({
+      method: 'get',
+      url: `/teams/${this.teamName}/invitation`
+    }).then(res => res.data)
+  }
+
   user() {
     return this.client.request<User>({
       method: 'get',
