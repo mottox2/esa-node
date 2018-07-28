@@ -22,7 +22,8 @@ $ yarn add esa-node
 - team
 - members
 - posts
-- posts(post_number)
+- post(post_number)
+- create_post
 - comments
 - comment
 - invitation

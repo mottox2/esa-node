@@ -47,6 +47,18 @@ interface PostCollection extends CollectionResponse {
   posts: Array<Post>
 }
 
+interface PostCreateParams {
+  name: string
+  body_md?: string
+  tags?: Array<string>
+  category?: string
+  wip?: boolean
+  message?: string
+  // チームメンバーのscreen_nameもしくは "esa_bot" を指定することで記事の投稿者を上書きすることができます。
+  // このパラメータは team の owner だけ が使用することができます。
+  user?: string
+}
+
 interface Comment {
   id: number
   body_md: string
@@ -132,7 +144,7 @@ class Esa {
 
   team(teamName: string) {
     return this.client.request<Team>({
-      method: 'get',
+      method: 'get',  
       url: `/teams/${teamName}`,
     }).then(res => res.data)
   }
@@ -144,10 +156,21 @@ class Esa {
     }).then(res => res.data)
   }
 
-  post(postId: string) {
+  post(number: number | string) {
     return this.client.request<Post>({
       method: 'get',
-      url: `/teams/${this.teamName}/posts/${postId}`
+      url: `/teams/${this.teamName}/posts/${number}`
+    }).then(res => res.data)
+  }
+
+  // TODO: Write権限がないと403が返ってくる場合のハンドリング
+  createPost(params: PostCreateParams) {
+    return this.client.request<any>({
+      method: 'post',
+      url: `/teams/${this.teamName}/posts`,
+      data: {
+        post: params
+      },
     }).then(res => res.data)
   }
 
