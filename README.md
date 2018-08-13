@@ -1,5 +1,7 @@
 ## esa-node
 
+[![npm version](https://badge.fury.io/js/esa-node.svg)](https://badge.fury.io/js/esa-node)
+
 esa.io API v1 client library for nodejs.
 
 
