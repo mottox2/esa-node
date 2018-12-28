@@ -34,7 +34,7 @@ $ yarn add esa-node
 
 ```js
 // Setup
-import Esa from 'node-esa'
+import Esa from 'esa-node'
 const esa = new Esa('access_token', 'teamName')
 
 // Fetch posts
