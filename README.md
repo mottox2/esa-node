@@ -1,5 +1,7 @@
 ## esa-node
 
+[![npm version](https://badge.fury.io/js/esa-node.svg)](https://badge.fury.io/js/esa-node)
+
 esa.io API v1 client library for nodejs.
 
 
@@ -17,7 +19,6 @@ $ yarn add esa-node
 ```
 
 ## Supported methods
-### GET
 - teams
 - team
 - members
@@ -33,7 +34,7 @@ $ yarn add esa-node
 
 ```js
 // Setup
-import Esa from 'node-esa'
+import Esa from 'esa-node'
 const esa = new Esa('access_token', 'teamName')
 
 // Fetch posts
@@ -52,3 +53,6 @@ const posts = esa.posts()
 3. Commit your changes (git commit -am 'Add some feature')
 4. Push to the branch (git push origin my-new-feature)
 5. Create a new Pull Request
+
+## Links
+- [dev/esa/api/v1 docs.esa.io](https://docs.esa.io/posts/102)
