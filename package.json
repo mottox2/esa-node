@@ -1,7 +1,7 @@
 {
   "name": "esa-node",
   "description": "esa.io API v1 client library for nodejs.",
-  "version": "0.1.7",
+  "version": "0.2.0",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "author": "mottox2 <y.mottox2@gmail.com>",
