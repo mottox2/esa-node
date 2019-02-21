@@ -107,6 +107,7 @@ interface User {
   updated_at: string
   icon: string
   email: string
+  teams?: Array<Team>
 }
 
 interface CollectionOptions {
