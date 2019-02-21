@@ -144,7 +144,7 @@ class Esa {
 
   team(teamName: string) {
     return this.client.request<Team>({
-      method: 'get',  
+      method: 'get',
       url: `/teams/${teamName}`,
     }).then(res => res.data)
   }
@@ -205,10 +205,13 @@ class Esa {
     }).then(res => res.data)
   }
 
-  user() {
+  user(options?: {
+    include: string
+  }) {
     return this.client.request<User>({
       method: 'get',
       url: `/user`,
+      params: options,
     }).then(res => res.data)
   }
 }
